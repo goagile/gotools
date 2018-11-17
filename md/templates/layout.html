@@ -1,0 +1,49 @@
+{{define "layout"}}
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type="text/css" rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.min.css">
+  <link type="text/css" rel="stylesheet" href="/static/styles/main.css"> {{template "head"}}
+  <title>{{template "title" .}}</title>
+</head>
+
+<body>
+  <nav class="navbar-wrapper navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <span class="navbar-brand" href="#">База знаний</span>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="/">Главная</a></li>
+          <li><a href="/reports/"><span class="glyphicon glyphicon-exclamation-sign"></span> Отчеты</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- <div id="contentsearch">
+    <form id="searchForm" name="searchForm" action="http://google.com/search">
+      <input name="q" type="text" value="search" maxlength="200" />
+      <input name="q" type="hidden" value="site:mysite.com"/>
+      <input name="submit" type="submit" value="Search" />
+    </form>
+  </div> -->
+
+  {{template "body" .}}
+  <script src="/static/js/jquery-3.2.1.min.js"></script>
+  <script src="/static/bootstrap/js/bootstrap.min.js"></script> {{template "scripts"}}
+</body>
+
+</html>
+{{end}}
