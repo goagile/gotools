@@ -4,16 +4,26 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"flag"
+)
+
+var (
+	M string
 )
 
 func main() {
+
+	flag.StringVar(&M, "m", "ping logstash", "message to send")
+	flag.Parse()
+
 	logstash := &LogStash{Host: "127.0.0.1", Port: 5000}
 
-	log.SetFlags(log.LstdFlags | log.Lshortfile)
-	log.SetPrefix("go/log/tcp ")
+	// log.SetFlags(log.LstdFlags | log.Lshortfile)
+	log.SetFlags(log.Lshortfile)
+	log.SetPrefix("[go-test-service] ")
 	log.SetOutput(logstash)
 
-	log.Println("AAA LOOOG !")
+	log.Println(M)
 }
 
 type LogStash struct {

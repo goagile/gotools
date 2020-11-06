@@ -21,7 +21,7 @@ func main() {
 	for {
 		fmt.Print("> ")
 		var m string
-		_, err := fmt.Scan("%v", &m)
+		_, err := fmt.Scan("%v", m)
 		if err != nil {
 			log.Fatal(err)
 		}
