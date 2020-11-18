@@ -1,34 +1,41 @@
 package db
 
-import "sync"
+import (
+	"sync"
+
+	"github.com/goagile/gotools/gin/simple/book"
+)
 
 var (
 	idMu sync.Mutex
 	id   int64
 
 	dbMu sync.Mutex
-	db   = make(map[int64]*Book)
+	db   = make(map[int64]*book.Book)
 )
 
 // Save - method save book to storage
-func Save(b *Book) int64 {
-	id := NextID()
+func Save(b *book.Book) int64 {
 	dbMu.Lock()
-	db[id] = b
+	db[b.ID] = b
 	dbMu.Unlock()
-	b.ID = id
 	return b.ID
 }
 
 // FindAll - return all books
-func FindAll() []*Book {
-	bs := make([]*Book, 0)
+func FindAll() []*book.Book {
+	bs := make([]*book.Book, 0)
 	dbMu.Lock()
 	for _, b := range db {
 		bs = append(bs, b)
 	}
 	dbMu.Unlock()
 	return bs
+}
+
+// Find - find book by ID
+func Find(id int64) *book.Book {
+	return db[id]
 }
 
 // NextID - returns next books ID
